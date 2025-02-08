@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pic/blue.jpg</file>
+        <file>pic/chazuo.png</file>
+        <file>pic/chuanglian.png</file>
+        <file>pic/diandeng.png</file>
+        <file>pic/dianliang.png</file>
+        <file>pic/dianshi.png</file>
+        <file>pic/jingbao.png</file>
+        <file>pic/kongtiao.png</file>
+        <file>pic/shezhi.png</file>
+        <file>pic/shuju.png</file>
+    </qresource>
+</RCC>
