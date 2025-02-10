@@ -11,6 +11,7 @@
 #include<QSqlQuery>
 #include<QSqlError>
 #include <QApplication>
+#include<QCryptographicHash>//哈希以后添加
 
 login::login(QWidget *parent) :
     QDialog(parent),
@@ -21,11 +22,43 @@ login::login(QWidget *parent) :
             QMessageBox::critical(this, "数据库连接失败", "无法连接到数据库！");
             return;
         }
+
+    loadSavedCredentials();
 }
 
 login::~login()
 {
     delete ui;
+}
+
+void login::loadSavedCredentials()
+{
+    QSettings settings("MyCompany","Rvmonitor");
+    QString username = settings.value("Login/Username").toString();
+    QString password = settings.value("Login/Password").toString();
+    bool remember = settings.value("Login/RememberPassword",false).toBool();
+
+    ui->usernameEdit->setText(username);
+    if(remember){
+        ui->passwordEdit->setText(password);
+        ui->rememberCheckBox->setChecked(true);
+    }
+}
+
+void login::saveCredentials()
+{
+    QSettings settings("MyCompany", "RVMonitor");
+    settings.setValue("Login/Username", ui->usernameEdit->text());
+    settings.setValue("Login/Password", ui->passwordEdit->text());
+    settings.setValue("Login/RememberPassword",true);
+}
+
+void login::clearCredentials()
+{
+    QSettings settings("MyCompany", "RVMonitor");
+    settings.remove("Login/Username");
+    settings.remove("Login/Password");
+    settings.setValue("Login/RememberPassword", false);
 }
 
 bool login::connectToDatabase()
@@ -48,7 +81,7 @@ bool login::connectToDatabase()
 
 void login::on_loginBtn_clicked()
 {
-    QString username = ui->usernameEdit->text();
+    QString username = ui->usernameEdit->text().trimmed();
     QString password = ui->passwordEdit->text();
 
     if(username.isEmpty() || password.isEmpty()){
@@ -66,21 +99,28 @@ void login::on_loginBtn_clicked()
     }
 
     if(!query.next()){
-        QMessageBox::information(this,"注册提示","您尚未注册，请先注册后登录");
+        QMessageBox::information(this,"注册提示","账号未注册，请先注册");
         return;
     }
 
-    QString storedPassword = query.value(0).toString();
+    QString storedPassword  = query.value(0).toString();
 
-    if(storedPassword == password){
+    if(storedPassword   == password ){
+        if(ui->rememberCheckBox->isChecked()) {
+                    saveCredentials();
+                } else {
+                    clearCredentials();
+                }
+
         MainWindow *mainWindow = new MainWindow();
+        mainWindow->setAttribute(Qt::WA_DeleteOnClose);
         mainWindow->show();
         this->close();
     }else{
         QMessageBox::warning(this, "登录失败", "账号或密码错误，请重新登录");
-        ui->usernameEdit->clear();
+       // ui->usernameEdit->clear();
         ui->passwordEdit->clear();
-        ui->usernameEdit->setFocus();
+        ui->passwordEdit->setFocus();
     }
 
 }
@@ -112,3 +152,5 @@ void login::on_exitBtn_clicked()
         QApplication::quit();
     }
 }
+
+

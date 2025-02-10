@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <QSettings>
 
 namespace Ui {
 class login;
@@ -22,6 +23,12 @@ private slots:
     void on_regBtn_clicked();
 
     void on_exitBtn_clicked();
+
+    void loadSavedCredentials();
+
+    void saveCredentials();
+
+    void clearCredentials();
 
 private:
     Ui::login *ui;
