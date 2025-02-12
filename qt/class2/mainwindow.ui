@@ -32,8 +32,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/kongtiao.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -51,8 +54,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/chuanglian.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
@@ -70,8 +76,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/diandeng.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -84,7 +93,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>智能空调</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -100,7 +109,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>智能窗帘</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -116,7 +125,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>氛围灯</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -137,8 +146,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/jingbao.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -151,7 +163,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>警报</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -172,8 +184,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/chazuo.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_6">
@@ -191,8 +206,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/dianshi.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -205,7 +223,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>电视</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -221,7 +239,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>插座</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -242,8 +260,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/shezhi.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -256,7 +277,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>设置</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -296,8 +317,11 @@
       <height>100</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/pic/dianliang.png);</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -310,7 +334,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>电池健康</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -326,7 +350,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>智能门锁</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

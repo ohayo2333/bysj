@@ -30,6 +30,10 @@ private slots:
 
     void clearCredentials();
 
+    void handleForgotPasswordToRegister();
+
+    void on_forgotpasswordBtn_clicked();
+
 private:
     Ui::login *ui;
 

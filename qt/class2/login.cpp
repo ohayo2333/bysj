@@ -3,6 +3,7 @@
 #include "ui_login.h"
 #include"ui_mainwindow.h"
 #include"mainwindow.h"
+#include"forgotpassworddialog.h"
 #include<QMessageBox>
 #include<QFile>
 #include<QTextStream>
@@ -152,5 +153,19 @@ void login::on_exitBtn_clicked()
         QApplication::quit();
     }
 }
+
+void login::on_forgotpasswordBtn_clicked()
+{
+    forgotpasswordDialog dialog(this);
+    connect(&dialog,&forgotpasswordDialog::requestRegister,
+            this,&login::handleForgotPasswordToRegister);
+    dialog.exec();
+}
+
+void login::handleForgotPasswordToRegister()
+{
+    on_regBtn_clicked();
+}
+
 
 

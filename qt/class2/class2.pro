@@ -28,17 +28,20 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     login.cpp \
-    register.cpp
+    register.cpp \
+    forgotpassworddialog.cpp
 
 HEADERS += \
         mainwindow.h \
     login.h \
-    register.h
+    register.h \
+    forgotpassworddialog.h
 
 FORMS += \
         mainwindow.ui \
     login.ui \
-    register.ui
+    register.ui \
+    forgotpassworddialog.ui
 
 RESOURCES += \
     pic.qrc
