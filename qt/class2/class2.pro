@@ -29,19 +29,46 @@ SOURCES += \
         mainwindow.cpp \
     login.cpp \
     register.cpp \
-    forgotpassworddialog.cpp
+    forgotpassworddialog.cpp \
+    airconditioner.cpp \
+    curtain.cpp \
+    light.cpp \
+    environment.cpp \
+    lock.cpp \
+    powersystem.cpp \
+    gps.cpp \
+    security.cpp \
+    dashboard.cpp
 
 HEADERS += \
         mainwindow.h \
     login.h \
     register.h \
-    forgotpassworddialog.h
+    forgotpassworddialog.h \
+    airconditioner.h \
+    curtain.h \
+    light.h \
+    environment.h \
+    lock.h \
+    powersystem.h \
+    gps.h \
+    security.h \
+    dashboard.h
 
 FORMS += \
         mainwindow.ui \
     login.ui \
     register.ui \
-    forgotpassworddialog.ui
+    forgotpassworddialog.ui \
+    airconditioner.ui \
+    curtain.ui \
+    light.ui \
+    environment.ui \
+    lock.ui \
+    powersystem.ui \
+    gps.ui \
+    security.ui \
+    dashboard.ui
 
 RESOURCES += \
     pic.qrc

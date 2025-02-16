@@ -10,5 +10,9 @@
         <file>pic/kongtiao.png</file>
         <file>pic/shezhi.png</file>
         <file>pic/shuju.png</file>
+        <file>pic/door.png</file>
+        <file>pic/environment.png</file>
+        <file>pic/map.png</file>
+        <file>pic/power.png</file>
     </qresource>
 </RCC>
