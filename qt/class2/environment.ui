@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Environment</class>
- <widget name="Environment" class="QDialog">
+ <widget class="QDialog" name="Environment">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,8 +10,11 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>环境监测</string>
   </property>
  </widget>
  <resources/>
