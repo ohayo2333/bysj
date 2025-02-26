@@ -87,7 +87,7 @@
           <string notr="true">color: #1a1a1a;</string>
          </property>
          <property name="text">
-          <string>账号：</string>
+          <string>手机号：</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -135,7 +135,7 @@
           <string notr="true">color: #1a1a1a;</string>
          </property>
          <property name="text">
-          <string>密码：</string>
+          <string>密 码：</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

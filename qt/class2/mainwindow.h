@@ -27,6 +27,7 @@ public:
     ~MainWindow();
 
 private slots:
+
     void on_airConditionerBtn_clicked();
 
     void on_curtainBtn_clicked();

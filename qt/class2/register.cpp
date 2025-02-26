@@ -6,6 +6,7 @@
 #include<QSqlError>
 #include<QTextStream>
 #include<QCloseEvent>
+#include<QRegularExpression>
 
 Register::Register(QWidget *parent) :
     QDialog(parent),
@@ -16,7 +17,12 @@ Register::Register(QWidget *parent) :
 
 bool Register::connectToDatabase()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    QSqlDatabase db = QSqlDatabase::database("my_connection", false);
+    if (db.isOpen()) {
+        return true;
+    }
+
+    db = QSqlDatabase::addDatabase("QODBC", "my_connection");
     db.setHostName("127.0.0.1");  // 数据库主机名
     db.setPort(3306);
     db.setDatabaseName("test1");  // 数据库名称
@@ -32,13 +38,26 @@ bool Register::connectToDatabase()
 
 void Register::validateRegistration()
 {
-    QString username = ui->regUserEdit->text();
+    QString phoneNumber = ui->phoneEdit->text();
     QString password = ui->regPasswordEdit->text();
+    QString licensePlate = ui->CarIdEdit->text();
 
-    if(username.isEmpty()){
-        showError("用户名不能为空！");
+    QRegularExpression phoneRegex("\\d{11}$");
+    if(!phoneRegex.match(phoneNumber).hasMatch()){
+        showError("手机号码必须要为11位数字！");
         return;
     }
+
+    if(!isPhoneNumberUnique(phoneNumber)){
+        return;
+    }
+
+    QRegularExpression licenseRegex("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9港澳]$");
+    if(!licenseRegex.match(licensePlate).hasMatch()){
+        showError("车牌号格式不正确！");
+        return;
+    }
+
     if(password.length()<6){
         showError("密码长度不能少于6位！");
         return;
@@ -49,24 +68,46 @@ void Register::validateRegistration()
     }
 
     if(connectToDatabase()){
-        saveUserToDatabase(username,password);
+        saveUserToDatabase(phoneNumber,password,licensePlate);
     }
     accept();
 }
 
-void Register::saveUserToDatabase(const QString &username, const QString &password)
+bool Register::isPhoneNumberUnique(const QString &phone)
 {
-    QSqlQuery query;
-    query.prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-    query.bindValue(":username", username);
+    QSqlQuery checkQuery;
+    checkQuery.prepare("SELECT phone_number FROM users WHERE phone_number = :phone");
+    checkQuery.bindValue(":phone",phone);
+
+    if (!checkQuery.exec()) {
+        QMessageBox::critical(this, "查询失败", "检查手机号唯一性时出错：" + checkQuery.lastError().text());
+        return false;
+    }
+
+    if (checkQuery.next()) {
+        QMessageBox::warning(this, "错误", "该手机号已注册！");
+        return false;
+    }
+    return true;
+}
+
+void Register::saveUserToDatabase(const QString &phoneNumber, const QString &password,const QString &licensePlate)
+{
+    QSqlQuery query(QSqlDatabase::database("my_connection"));
+    query.prepare("INSERT INTO users (phone_number, password,license_plate) VALUES (:phone_number, :password,:license_plate)");
+    query.bindValue(":phone_number", phoneNumber);
     query.bindValue(":password", password);
+    query.bindValue(":license_plate", licensePlate);
+
 
     if(!query.exec()){
         QMessageBox::critical(this,"注册失败","无法保存用户数据："+query.lastError().text());
     }else{
         QMessageBox::information(this,"注册成功","用户已成功注册！");
     }
+    QSqlDatabase::database("my_connection", false).close();
 }
+
 
 void Register::showError(const QString &message)
 {
@@ -74,6 +115,7 @@ void Register::showError(const QString &message)
     ui->regPasswordEdit->clear();
     ui->confirmPasswordEdit->clear();
     ui->regPasswordEdit->setFocus();
+    ui->phoneEdit->clear();
 }
 Register::~Register()
 {

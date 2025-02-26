@@ -12,6 +12,7 @@
 #include<QSqlQuery>
 #include<QSqlError>
 #include <QApplication>
+#include<QRegularExpression>
 #include<QCryptographicHash>//哈希以后添加
 
 login::login(QWidget *parent) :
@@ -35,11 +36,11 @@ login::~login()
 void login::loadSavedCredentials()
 {
     QSettings settings("MyCompany","Rvmonitor");
-    QString username = settings.value("Login/Username").toString();
+    QString phone = settings.value("Login/Username").toString();
     QString password = settings.value("Login/Password").toString();
     bool remember = settings.value("Login/RememberPassword",false).toBool();
 
-    ui->usernameEdit->setText(username);
+    ui->usernameEdit->setText(phone);
     if(remember){
         ui->passwordEdit->setText(password);
         ui->rememberCheckBox->setChecked(true);
@@ -82,17 +83,23 @@ bool login::connectToDatabase()
 
 void login::on_loginBtn_clicked()
 {
-    QString username = ui->usernameEdit->text().trimmed();
+    QString phoneNumber = ui->usernameEdit->text().trimmed();
     QString password = ui->passwordEdit->text();
 
-    if(username.isEmpty() || password.isEmpty()){
-        QMessageBox::warning(this,"输入错误","用户名或密码不能为空！");
+    if(phoneNumber.isEmpty() || password.isEmpty()){
+        QMessageBox::warning(this,"输入错误","手机号或密码不能为空！");
+        return;
+    }
+
+    QRegularExpression phoneRegex("^\\d{11}$");
+    if(!phoneRegex.match(phoneNumber).hasMatch()){
+        QMessageBox::warning(this,"输入错误","手机号格式不正确！");
         return;
     }
 
     QSqlQuery query;
-    query.prepare("SELECT password FROM users WHERE username = :username");
-    query.bindValue(":username",username);
+    query.prepare("SELECT password FROM users WHERE phone_number = :phone_number");
+    query.bindValue(":phone_number",phoneNumber);
 
     if(!query.exec()){
         QMessageBox::critical(this,"服务器错误","服务器出现问题！");

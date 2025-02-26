@@ -29,7 +29,8 @@ private:
     void validateRegistration();
     void showError(const QString &message);
     bool connectToDatabase();
-    void saveUserToDatabase(const QString &username, const QString &password);
+    bool isPhoneNumberUnique(const QString &phone);
+    void saveUserToDatabase(const QString &phoneNumber, const QString &password,const QString &licensePlate);
 
 signals:
     void returnToLogin();
