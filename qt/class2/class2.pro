@@ -38,7 +38,8 @@ SOURCES += \
     powersystem.cpp \
     gps.cpp \
     security.cpp \
-    dashboard.cpp
+    dashboard.cpp \
+    curtainwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     powersystem.h \
     gps.h \
     security.h \
-    dashboard.h
+    dashboard.h \
+    curtainwidget.h
 
 FORMS += \
         mainwindow.ui \

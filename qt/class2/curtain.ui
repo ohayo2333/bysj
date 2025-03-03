@@ -50,7 +50,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="curtainArea" native="true">
+  <widget class="CurtainWidget" name="curtainArea" native="true">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -61,6 +61,14 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CurtainWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">curtainwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

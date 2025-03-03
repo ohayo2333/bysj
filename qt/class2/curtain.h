@@ -3,9 +3,7 @@
 
 
 #include <QDialog>
-#include <QSlider>
-#include <QLabel>
-#include <QWidget>
+#include "curtainwidget.h"
 
 namespace Ui {
 class Curtain;
@@ -19,13 +17,10 @@ public:
     explicit Curtain(QWidget *parent = 0);
     ~Curtain();
 
-private slots:
-    void on_sliderValueChanged(int value);
-
 private:
-    void smoothSetOpenness(int value);
     Ui::Curtain *ui;
-
+private slots:
+    void updateCurtain(int value);
 
 };
 

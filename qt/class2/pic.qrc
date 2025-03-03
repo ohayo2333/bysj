@@ -14,5 +14,7 @@
         <file>pic/environment.png</file>
         <file>pic/map.png</file>
         <file>pic/power.png</file>
+        <file>pic/lightoff.png</file>
+        <file>pic/lightopen.png</file>
     </qresource>
 </RCC>
