@@ -16,5 +16,7 @@
         <file>pic/power.png</file>
         <file>pic/lightoff.png</file>
         <file>pic/lightopen.png</file>
+        <file>pic/lock.png</file>
+        <file>pic/Unlock.png</file>
     </qresource>
 </RCC>
